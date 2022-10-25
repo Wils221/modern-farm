@@ -6,17 +6,17 @@ import { createCorn } from './seeds/corn.js'
 import { createSoybean } from './seeds/soybean.js'
 import { createSunflower } from './seeds/sunflower.js'
 import { createWheat } from './seeds/wheat.js'
-import { addPlant, usePlants } from './field.js'
-
-
-
-
+import { addPlant } from './field.js'
+import { usePlants } from "./field.js"
+import { plantSeeds } from "./tractor.js"
+import { harvestPlants } from "./harvester.js"
+import { Catalog } from "./catalog.js"
 
 const yearlyPlan = createPlan()
 console.log(yearlyPlan)
 
-const asparagusSeed = createAsparagus()
-//console.log(asparagusSeed)
+/*const asparagusSeed = createAsparagus()
+console.log(asparagusSeed)
 addPlant(asparagusSeed)
 
 const potatoSeed = createPotato()
@@ -33,3 +33,17 @@ addPlant(sunflowerSeed)
 
 const wheatSeed = createWheat()
 addPlant(wheatSeed)
+*/
+
+plantSeeds(yearlyPlan)
+let plants = usePlants()
+console.log(plants)
+
+const harvestingPlants = harvestPlants(plants)
+
+
+const plantCatalog = Catalog(harvestingPlants)
+console.log(plantCatalog)
+
+
+document.querySelector(".container").innerHTML += plantCatalog
